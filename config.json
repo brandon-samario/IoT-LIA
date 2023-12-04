@@ -1,0 +1,81 @@
+[
+    {
+        "conditions": [
+            {
+                "topic": "bathroom/humidity",
+                "comparison": ">",
+                "value": 50
+            }
+        ],
+        "results": [
+            {
+                "topic": "bathroom/fan",
+                "value": "on"
+            }
+        ]
+    },
+    {
+        "conditions": [
+            {
+                "topic": "kitchen/lighting",
+                "comparison": "<",
+                "value": 30
+            },
+            {
+                "topic": "house/time",
+                "comparison": ">",
+                "value": 6
+            }
+        ],
+        "results": [
+            {
+                "topic": "kitchen/light",
+                "value": "on"
+            },
+            {
+                "topic": "kitchen/music",
+                "value": "play"
+            }
+        ]
+    },
+    {
+        "conditions": [
+            {
+                "topic": "room/lighting",
+                "comparison": "<",
+                "value": 20
+            },
+            {
+                "topic": "house/time",
+                "comparison": "<",
+                "value": 22
+            },
+            {
+                "topic": "house/time",
+                "comparison": ">",
+                "value": 12
+            }
+        ],
+        "results": [
+            {
+                "topic": "room/light",
+                "value": "on"
+            }
+        ]
+    },
+    {
+        "conditions": [
+            {
+                "topic": "b",
+                "comparison": "d",
+                "value": "f"
+            }
+        ],
+        "results": [
+            {
+                "topic": "x",
+                "value": "y"
+            }
+        ]
+    }
+]

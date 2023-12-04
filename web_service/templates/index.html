@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historian Data Viewer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Historian Data Viewer</h1>
+
+<a href='/configure'>Configure the system</a>
+
+    <div>
+        <label for="topic">Enter MQTT Topic:</label>
+        <input type="text" id="topic" placeholder="Topic">
+        <button onclick="getData()">Get Data</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        function getData() {
+            const topic = document.getElementById("topic").value;
+            const url = `/historian?topic=${topic}`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => displayData(data))
+                .catch(error => console.error(error));
+        }
+
+        function displayData(data) {
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = '';
+
+            if (data.length === 0) {
+                resultDiv.innerHTML = "No data found for the specified topic.";
+                return;
+            }
+
+            if (!isNaN(parseFloat(data[0].payload))) {
+                // Numeric data - Create an x-y plot
+                const timestamps = data.map(item => item.timestamp);
+                const values = data.map(item => item.payload);
+
+                // Use a plotting library like Chart.js
+                const canvas = document.createElement("canvas");
+                canvas.id = "chart";
+                resultDiv.appendChild(canvas);
+
+                new Chart(canvas, {
+                    type: 'line',
+                    data: {
+                        labels: timestamps,
+                        datasets: [
+                            {
+                                label: 'Value',
+                                data: values,
+                                borderColor: 'blue',
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            } else {
+                // Textual data - Create a table
+                const table = document.createElement("table");
+                table.classList.add("table");
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Value</th>
+                            <th>Topic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.map(item => `
+                            <tr>
+                                <td>${item.timestamp}</td>
+                                <td>${item.payload}</td>
+                                <td>${item.topic}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                `;
+                resultDiv.appendChild(table);
+            }
+        }
+    </script>
+</body>
+</html>
