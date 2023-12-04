@@ -1,24 +1,10 @@
 import paho.mqtt.client as mqtt
 import json
 
-# [
-#    {"conditions":[
-#        {"topic":"kitchen/lighting","comparison":"<","value":30},
-#        {"topic":"house/time","comparison":">","value":6}
-#        ],
-#     "results":[
-#        {"topic":"kitchen/light","value":"on"},
-#        {"topic":"kitchen/music","value":"play"}
-#        ]
-#    },
-# ]
-
-
 class IoT_Controller:
     configuration = []
     client = None
     mqtt_data = {}
-#{ "topic":value, "topic2":value2 }
 
     def configure(filename):
         IoT_Controller.client = mqtt.Client()
