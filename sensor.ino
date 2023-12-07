@@ -2,8 +2,8 @@
 #include <PubSubClient.h>
 #include <Arduino.h>
 
-const char* ssid = "DecoWireless"; // Your WiFi SSID
-const char* password = "13010Louisjosephpapineau"; // Your WiFi password
+const char* ssid = "iot_wireless"; // Your WiFi SSID
+const char* password = "Unsecure!"; // Your WiFi password
 const char* mqtt_server = "SamVafPi.local"; // MQTT broker address
 const int mqtt_port = 1883;
 const char* mqtt_topic = "sensor/moisture";
