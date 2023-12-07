@@ -10,7 +10,7 @@
         "results": [
             {
                 "topic": "control/watering",
-                "value": "on"
+                "value": "off"
             }
         ]
     },
@@ -25,7 +25,7 @@
         "results": [
             {
                 "topic": "control/watering",
-                "value": "off"
+                "value": "oon"
             }
         ]
     }
