@@ -1,0 +1,32 @@
+[
+    {
+        "conditions": [
+            {
+                "topic": "sensor/moisture",
+                "comparison": ">",
+                "value": 1000
+            }
+        ],
+        "results": [
+            {
+                "topic": "control/watering",
+                "value": "on"
+            }
+        ]
+    },
+    {
+        "conditions": [
+            {
+                "topic": "sensor/moisture",
+                "comparison": "<=",
+                "value": 2000
+            }
+        ],
+        "results": [
+            {
+                "topic": "control/watering",
+                "value": "off"
+            }
+        ]
+    }
+]
